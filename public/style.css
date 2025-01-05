@@ -1,4 +1,68 @@
+:root {
+    --roundtime: 5;
+}
+
 body {
     background-color: black;
     color: white;
+}
+
+.header {
+    font-size: 5vw;
+    border-bottom: 0.3vw solid white;
+    margin: 1vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    position: relative;
+    top: 0.5vw;
+}
+
+.timer {
+    border: 0.3vw solid white;
+    border-radius: 10vw;
+    margin: 1vw;
+}
+
+.timer .bar {
+    height: 1vw;
+    border-radius: 10vw;
+    background-color: red;
+    animation: roundtime calc(var(--roundtime) * 1s) steps(var(--roundtime)) forwards;
+    transform-origin: left center;
+}
+
+@keyframes roundtime {
+    to {
+        transform: scaleX(0);
+    }
+}
+
+.timer[data-style="smooth"] .bar {
+    animation: roundtime calc(var(--roundtime) * 1s) linear forwards;
+}
+
+.code {
+    position: absolute;
+    display: flex;
+    gap: 0.2vw;
+    font-size: 10vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.digit {
+    border: 0.3vw solid white;
+    padding: 1vw 3vw;
+}
+
+.notes {
+    display: none;
+}
+
+.hints {
+    display: none;
 }
