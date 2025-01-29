@@ -1,9 +1,10 @@
-const readline = require("readline");
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+// const readline = require("readline");
+// const rl = readline.createInterface({
+//     input: process.stdin,
+//     output: process.stdout
+// });
 
+//define code
 let code = [];
 while(code.length < 3) {
     let digit = Math.floor(Math.random() * 10);
@@ -15,53 +16,53 @@ code = code.join("");
 
 let all = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let remaining = all.filter(digit => !code.includes(digit));
+let remaining2 = [...remaining];
+let tcwpd = [];
 
+let ci, ci1, ci2, wi, wi1, wi2, cd, cd1, cd2, wd1, wd2, occpd;
+
+//two correct, wrong positions
 function genTCWP() {
     let tcwp = [];
-    let remaining2 = [...remaining];
 
-    let ci1 = Math.floor(Math.random() * 3);
-    let cd1 = code[ci1];
-    let wi1;
+    ci1 = Math.floor(Math.random() * 3);
+    cd1 = code[ci1];
     do {
         wi1 = Math.floor(Math.random() * 3);
     } while(wi1 === ci1);
     tcwp[wi1] = cd1;
+    tcwpd[0] = cd1;
 
-    let ci2;
     do {
         ci2 = Math.floor(Math.random() * 3);
     } while(ci2 === ci1);
-    let cd2 = code[ci2];
-    let wi2;
+    cd2 = code[ci2];
     do {
         wi2 = Math.floor(Math.random() * 3);
-    } while(wi2 === ci2 && wi2 === wi1);
+    } while(wi2 === ci2 || wi2 === wi1);
     tcwp[wi2] = cd2;
-
-    remaining2 = remaining2.filter(digit => digit !== cd1 && digit !== cd2);
+    tcwpd[1] = cd2;
 
     for(let i = 0; i < 3; i++) {
         if(tcwp[i] === undefined) {
-            tcwp[i] = remaining2[Math.floor(Math.random() * remaining2.length)];
-            remaining2 = remaining2.filter(digit => digit !== tcwp[i]);
+            tcwp[i] = remaining[Math.floor(Math.random() * remaining.length)];
+            wd1 = tcwp[i];
         }
     }
     return tcwp.join("");
 }
 
+//one correct, correct position
 function genOCCP() {
     let occp = [];
-    let remaining2 = [...remaining];
 
-    let ci = Math.floor(Math.random() * 3);
-    let cd = code[ci];
+    ci = Math.floor(Math.random() * 3);
+    cd = code[ci];
     occp[ci] = cd;
-
-    remaining2 = remaining2.filter(digit => digit !== cd);
+    ocd = cd;
 
     for(let i = 0; i < 3; i++) {
-        if(i !== ci) {
+        if(occp[i] === undefined) {
             occp[i] = remaining2[Math.floor(Math.random() * remaining2.length)];
             remaining2 = remaining2.filter(digit => digit !== occp[i]);
         }
@@ -69,39 +70,63 @@ function genOCCP() {
     return occp.join("");
 }
 
+//one correct, wrong position
 function genOCWP() {
     let ocwp = [];
-    let remaining2 = [...remaining];
 
-    let ci = Math.floor(Math.random() * 3);
-    let cd = code[ci];
-    let wi;
+    ci = Math.floor(Math.random() * 3);
+    cd = code[ci];
+    while(cd === ocd) {
+        ci = Math.floor(Math.random() * 3);
+        cd = code[ci];
+    }
+
     do {
         wi = Math.floor(Math.random() * 3);
     } while(wi === ci);
     ocwp[wi] = cd;
 
-    remaining2 = remaining2.filter(digit => digit !== cd);
+    let uds = [];
 
     for(let i = 0; i < 3; i++) {
-        if(i !== wi) {
+        if(ocwp[i] === undefined) {
             ocwp[i] = remaining2[Math.floor(Math.random() * remaining2.length)];
             remaining2 = remaining2.filter(digit => digit !== ocwp[i]);
+            uds.push(ocwp[i]);
         }
     }
+    do {
+        wd2 = uds[Math.floor(Math.random() * uds.length)];
+    } while(wd1 === wd2);
     return ocwp.join("");
 }
 
+//nothing is correct
 function genNIC() {
     let nic = [];
+
+    wi1 = Math.floor(Math.random() * 3);
+    nic[wi1] = wd1;
+
+    remaining2 = remaining2.filter(digit => digit !== wd1);
+
+    do {
+        wi2 = Math.floor(Math.random() * 3);
+    } while(wi2 === wi1);
+    nic[wi2] = wd2;
+
+    remaining2 = remaining2.filter(digit => digit !== wd2);
+
     for(let i = 0; i < 3; i++) {
-        let digit = Math.floor(Math.random() * remaining.length);
-        nic.push(remaining[digit]);
-        remaining.splice(digit, 1);
+        if(nic[i] === undefined) {
+            nic[i] = remaining2[Math.floor(Math.random() * remaining2.length)];
+            remaining2 = remaining2.filter(digit => digit !== nic[i]);
+        }
     }
-    return nic.join("");;
+    return nic.join("");
 }
 
+console.log(code);
 let tcwp = genTCWP();
 console.log("TCWP: " + tcwp);
 let occp = genOCCP();
@@ -111,17 +136,16 @@ console.log("OCWP: " + ocwp);
 let nic = genNIC();
 console.log("NIC: " + nic);
 
-function answer() {
-    rl.question("Enter code: ", (input) => {
-        if(input === code) {
-            console.log("Cracked");
-            rl.close(); 
-        } else {
-            console.log("Incorrect");
-            console.log(code);
-            answer();
-        }
-    });
-};
+// function answer() {
+//     rl.question("Enter code: ", (input) => {
+//         if(input === code) {
+//             console.log("Cracked");
+//             rl.close(); 
+//         } else {
+//             console.log("Incorrect");
+//             answer();
+//         }
+//     });
+// };
 
-answer();
+// answer();
