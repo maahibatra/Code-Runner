@@ -161,6 +161,7 @@ function genNIC() {
     return nic.join("");
 }
 
+console.log(cs);
 let tcwp = genTCWP();
 console.log("TCWP: " + tcwp);
 let occp = genOCCP();
