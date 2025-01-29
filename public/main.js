@@ -12,7 +12,7 @@ while(code.length < 3) {
         code.push(digit);
     }
 }
-code = code.join("");
+cs = code.join("");
 
 let all = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 let remaining = all.filter(digit => !code.includes(digit));
@@ -91,10 +91,16 @@ function genOCWP() {
     let ocwp = [];
 
     if(coin === 1) {
-        do {
+        let vc = code.filter(digit => !tcwp.includes(digit) && digit !== ocd);
+        if(vc.length > 0) {
             ci = Math.floor(Math.random() * 3);
-            cd = code[ci];
-        } while(tcwp.includes(cd) || cd === ocd);
+            cd = vc[Math.floor(Math.random() * vc.length)];
+        } else {
+            do {
+                ci = Math.floor(Math.random() * 3);
+                cd = code[ci];
+            } while(tcwp.includes(cd));
+        }
     } else {
         do {
             ci = Math.floor(Math.random() * 3);
@@ -166,7 +172,7 @@ console.log("NIC: " + nic);
 
 function answer() {
     rl.question("Enter code: ", (input) => {
-        if(input === code) {
+        if(input === cs) {
             console.log("You cracked the code!");
             rl.close(); 
         } else {
