@@ -25,7 +25,7 @@ body {
 
 .hint {
     display: flex;
-    gap: 0.1vw;
+    gap: 0.2vw;
     font-size: 4vw;
     min-height: 7vw;
     max-height: 15vw;
@@ -34,6 +34,7 @@ body {
 .hint .digit {
     width: 3vw;
     font-size: 5vw;
+    cursor: default;
 }
 
 .hint .digit::placeholder {
@@ -53,6 +54,7 @@ body {
     flex-direction: column;
     width: 50%;
     gap: 1vw;
+    border-left: 0.3vw solid white;
 }
 
 #header {
@@ -62,7 +64,7 @@ body {
     margin-left: auto;
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    width: 95%;
 }
 
 #lock {
@@ -75,14 +77,15 @@ body {
 
 #code {
     display: flex;
-    gap: 0.2vw;
+    gap: 0.3vw;
     font-size: 7vw;
-    height: 75%;
+    height: 70%;
     position: relative;
     max-height: 15vw;
 }
 
 #note {
+    margin-top: -1vw;
     font-size: 1.5vw;
 }
 
@@ -96,8 +99,14 @@ body {
     font-size: 7vw;
     background-color: transparent;
     color: white;
+    outline: none;
+    caret-color: transparent;
 }
 
 .digit::placeholder {
     font-size: 7vw;
+}
+
+.digit:focus {
+    background-color: blue;
 }

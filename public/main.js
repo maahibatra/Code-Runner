@@ -14,6 +14,7 @@ let remaining2;
 
 let ci, ci1, ci2, wi, wi1, wi2, cd, cd1, cd2, wd1, wd2, wd3, ocd, coin;
 //correct index, wrong index, correct digit, wrong digit
+let tcwp = [], occp = [], ocwp = [], nic = [];
 
 //two correct, wrong positions
 function genTCWP() {
@@ -155,35 +156,90 @@ function genNIC() {
     return nic.join("");
 }
 
-console.log(cs);
-let tcwp = genTCWP();
-console.log("TCWP: " + tcwp);
-let occp = genOCCP();
-console.log("OCCP: " + occp);
-let ocwp = genOCWP();
-console.log("OCWP: " + ocwp);
-let nic = genNIC();
-console.log("NIC: " + nic);
+function flag() {
+    console.log(cs);
+    tcwp = genTCWP();
+    occp = genOCCP();
+    ocwp = genOCWP();
+    nic = genNIC();
 
-let hh = document.querySelectorAll("#hints .hint");
-let hd = [ //hint data
-    {array: tcwp, text: "Two numbers are correct but wrongly placed."},
-    {array: occp, text: "One number is correct and correctly placed."},
-    {array: ocwp, text: "One number is correct but wrongly placed."},
-    {array: nic, text: "Nothing is correct."},
-];
-
-hd.sort(() => Math.random() - 0.5);
-
-for(let i = 0; i < 4; i++) {
-    let digits = hh[i].querySelectorAll(".digit");
-    for(let j = 0; j < 3; j++) {
-        digits[j].value = hd[i].array[j];
+    let hh = document.querySelectorAll("#hints .hint");
+    let hd = [ //hint data
+        {array: tcwp, text: "Two numbers are correct but wrongly placed."},
+        {array: occp, text: "One number is correct and correctly placed."},
+        {array: ocwp, text: "One number is correct but wrongly placed."},
+        {array: nic, text: "Nothing is correct."},
+    ];
+    
+    hd.sort(() => Math.random() - 0.5);
+    
+    for(let i = 0; i < 4; i++) {
+        let digits = hh[i].querySelectorAll(".digit");
+        for(let j = 0; j < 3; j++) {
+            digits[j].value = hd[i].array[j];
+        }
+    
+        hh[i].querySelector(".text").textContent = hd[i].text;
     }
 
-    hh[i].querySelector(".text").textContent = hd[i].text;
+    let cds = document.querySelectorAll("#code .digit");
+    let cda = [];
+
+    cds.forEach((input, i) => {
+        input.addEventListener("focus", function() {
+            input.setSelectionRange(1, 1);
+        });
+
+        input.addEventListener("click", function() {
+            input.setSelectionRange(1, 1);
+        });
+
+        input.addEventListener("input", function() {
+            if(!/^\d$/.test(event.target.value.charAt(event.target.value.length - 1))) {
+                event.target.value = event.target.value.replace(/\D/g, '');
+            } else {
+                event.target.value = event.target.value.charAt(event.target.value.length - 1);
+                if(i < cds.length - 1) {
+                    const nd = cds[i + 1];
+                    nd.focus();
+                }
+            }
+        });
+
+        input.addEventListener("keydown", function() {
+            if(event.key === "ArrowRight" && (i < cds.length - 1)) {
+                    const nd = cds[i + 1];
+                    nd.focus();
+            } else if(event.key === "ArrowLeft" && i > 0) {
+                    event.preventDefault();
+                    const pd = cds[i - 1];
+                    pd.focus();
+            } else if(event.key === "Backspace") {
+                event.preventDefault();
+                input.value = "";
+                if(i > 0) {
+                    const pd = cds[i - 1];
+                    pd.focus();
+                }
+            }
+        })
+    });
+
+    // for(let i = 0; i < 3; i++) {
+    //     cda.push(cds[i].value);
+    // }
+
+    // document.addEventListener("keydown", function() {
+    //     if(event.key === "Enter") {
+    //         for(let i = 0; i < 3; i++) {
+    //             if(cds[i].value !== code[i].toString()) {
+    //                 console.log("try again");
+    //             } else {
+    //                 console.log("meow");
+    //             }
+    //         }
+    //     }
+    // });
 }
 
-document.querySelectorAll("#code .digit")[0].value = code[0];
-document.querySelectorAll("#code .digit")[1].value = code[1];
-document.querySelectorAll("#code .digit")[2].value = code[2];
+flag();
