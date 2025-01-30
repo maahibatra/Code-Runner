@@ -1,9 +1,3 @@
-const readline = require("readline");
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
 //define code
 let code = [];
 while(code.length < 3) {
@@ -171,16 +165,25 @@ console.log("OCWP: " + ocwp);
 let nic = genNIC();
 console.log("NIC: " + nic);
 
-function answer() {
-    rl.question("Enter code: ", (input) => {
-        if(input === cs) {
-            console.log("You cracked the code!");
-            rl.close(); 
-        } else {
-            console.log("Incorrect, try again.");
-            answer();
-        }
-    });
-};
+let hh = document.querySelectorAll("#hints .hint");
+let hd = [ //hint data
+    {array: tcwp, text: "Two numbers are correct but wrongly placed."},
+    {array: occp, text: "One number is correct and correctly placed."},
+    {array: ocwp, text: "One number is correct but wrongly placed."},
+    {array: nic, text: "Nothing is correct."},
+];
 
-answer();
+hd.sort(() => Math.random() - 0.5);
+
+for(let i = 0; i < 4; i++) {
+    let digits = hh[i].querySelectorAll(".digit");
+    for(let j = 0; j < 3; j++) {
+        digits[j].value = hd[i].array[j];
+    }
+
+    hh[i].querySelector(".text").textContent = hd[i].text;
+}
+
+document.querySelectorAll("#code .digit")[0].value = code[0];
+document.querySelectorAll("#code .digit")[1].value = code[1];
+document.querySelectorAll("#code .digit")[2].value = code[2];

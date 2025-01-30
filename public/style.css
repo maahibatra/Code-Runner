@@ -27,17 +27,32 @@ body {
     display: flex;
     gap: 0.1vw;
     font-size: 4vw;
+    min-height: 7vw;
     max-height: 15vw;
 }
 
 .hint .digit {
-    width: 1vw;
+    width: 3vw;
+    font-size: 5vw;
+}
+
+.hint .digit::placeholder {
+    font-size: 5vw;
 }
 
 .text {
-    font-size: 2vw;
-    margin: 1vw;
-    background-color: blue;
+    font-size: 1.5vw;
+    margin: 0 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#right {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    gap: 1vw;
 }
 
 #header {
@@ -47,25 +62,42 @@ body {
     margin-left: auto;
     display: flex;
     justify-content: space-between;
-    width: 50%;
+    width: 100%;
+}
+
+#lock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10vw;
 }
 
 #code {
     display: flex;
     gap: 0.2vw;
     font-size: 7vw;
-    height: 25%;
+    height: 75%;
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
     max-height: 15vw;
+}
+
+#note {
+    font-size: 1.5vw;
 }
 
 .digit {
     border: 0.3vw solid white;
-    padding: 1vw 3vw;
+    padding: 1vw 2vw;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 4vw;
+    font-size: 7vw;
+    background-color: transparent;
+    color: white;
+}
+
+.digit::placeholder {
+    font-size: 7vw;
 }
