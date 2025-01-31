@@ -24,10 +24,10 @@ body {
     height: 77vh;
     padding: 3.5vw;
     display: flex;
-    overflow: scroll;
 }
 
 #modal {
+    overflow: scroll;
     z-index: 1;
     flex-direction: column;
 }
@@ -291,18 +291,26 @@ body {
 }
 
 @media only screen and (min-height: 678px) {
-    #container {
-        overflow: hidden;
-    }
-
     #hints {
         max-height: 85%;
     }
 }
 
-@media only screen and (min-height: 943px) {
+@media only screen and (min-height: 943px) and (max-width: 1120px) {
     #hints {
         max-height: 70%;
+    }
+}
+
+@media only screen and (min-height: 894px) {
+    #container {
+        overflow: hidden;
+    }
+}
+
+@media only screen and (max-height: 884px) {
+    #container {
+        overflow: scroll;
     }
 }
 
