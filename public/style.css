@@ -72,21 +72,16 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10vw;
+    margin-top: 8vw;
 }
 
 #code {
     display: flex;
     gap: 0.3vw;
     font-size: 7vw;
-    height: 70%;
+    height: 50%;
     position: relative;
     max-height: 15vw;
-}
-
-#note {
-    margin-top: -1vw;
-    font-size: 1.5vw;
 }
 
 .digit {
@@ -109,4 +104,19 @@ body {
 
 #code .digit:focus {
     background-color: blue;
+}
+
+#level {
+    font-size: 3vw;
+    margin-bottom: 1vw;
+}
+
+#highscore {
+    font-size: 2vw;
+    margin-bottom: 1vw;
+}
+
+#note {
+    font-size: 1.5vw;
+    margin-top: 1vw;
 }
