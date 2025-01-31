@@ -1,20 +1,22 @@
-//define code
-let code = [];
-while(code.length < 3) {
-    let digit = Math.floor(Math.random() * 10);
-    if(!code.includes(digit)) {
-        code.push(digit);
-    }
-}
-cs = code.join("");
-
-let all = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-let remaining = all.filter(digit => !code.includes(digit));
-let remaining2;
-
-let ci, ci1, ci2, wi, wi1, wi2, cd, cd1, cd2, wd1, wd2, wd3, ocd, coin;
+let code, tcwp = [], occp = [], ocwp = [], nic = [];
+all = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+let ci, ci1, ci2, wi, wi1, wi2, cd, cd1, cd2, wd1, wd2, wd3, ocd, coin, remaining, remaining2;
 //correct index, wrong index, correct digit, wrong digit
-let tcwp = [], occp = [], ocwp = [], nic = [];
+
+//define code
+function genCode() {
+    code = [];
+    while(code.length < 3) {
+        let digit = Math.floor(Math.random() * 10);
+        if(!code.includes(digit)) {
+            code.push(digit);
+        }
+    }
+
+    remaining = all.filter(digit => !code.includes(digit));
+
+    return code.join("");
+}
 
 //two correct, wrong positions
 function genTCWP() {
@@ -157,6 +159,7 @@ function genNIC() {
 }
 
 function flag() {
+    cs = genCode();
     console.log(cs);
     tcwp = genTCWP();
     occp = genOCCP();
@@ -183,7 +186,6 @@ function flag() {
     }
 
     let cds = document.querySelectorAll("#code .digit");
-    let cda = [];
 
     cds.forEach((input, i) => {
         input.addEventListener("focus", function() {
@@ -214,32 +216,28 @@ function flag() {
                     event.preventDefault();
                     const pd = cds[i - 1];
                     pd.focus();
-            } else if(event.key === "Backspace") {
-                event.preventDefault();
-                input.value = "";
-                if(i > 0) {
-                    const pd = cds[i - 1];
-                    pd.focus();
-                }
+            } else if(event.key === "Backspace" && input.value === ""&& i > 0) {
+                const pd = cds[i - 1];
+                pd.focus();
             }
         })
     });
 
-    // for(let i = 0; i < 3; i++) {
-    //     cda.push(cds[i].value);
-    // }
-
-    // document.addEventListener("keydown", function() {
-    //     if(event.key === "Enter") {
-    //         for(let i = 0; i < 3; i++) {
-    //             if(cds[i].value !== code[i].toString()) {
-    //                 console.log("try again");
-    //             } else {
-    //                 console.log("meow");
-    //             }
-    //         }
-    //     }
-    // });
+    document.addEventListener("keydown", function() {
+        if(event.key === "Enter") {
+            let cda = [];
+            for(let i = 0; i < 3; i++) {
+                cda.push(cds[i].value);
+            }
+            cda = cda.join("");
+            if(cda === cs) {
+                console.log("meow");
+                flag();
+            } else {
+                console.log("rawr");
+            }
+        }
+    });
 }
 
 flag();
