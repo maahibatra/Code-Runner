@@ -21,7 +21,7 @@ body {
     flex-direction: column;
 }
 
-#header {
+.header {
     font-size: 3vw;
     border-bottom: 0.3vw solid white;
     height: 4vw;
@@ -30,7 +30,7 @@ body {
     width: 100%;
 }
 
-#play {
+.play {
     border: 0.3vw solid white;
     color: white;
     border-radius: 0.7vw;
@@ -38,7 +38,8 @@ body {
     width: 10vw;
     font-size: 2vw;
     margin-top: -0.5vw;
-    margin-bottom: 0.8vw;
+    position: relative;
+    bottom: 0.5vw;
     cursor: pointer;
 }
 
@@ -97,7 +98,7 @@ body {
     border-left: 0.3vw solid white;
 }
 
-#right #header {
+#right .header {
     width: 95%;
     margin-left: auto;
 }
@@ -141,12 +142,12 @@ body {
     background-color: blue;
 }
 
-#level {
+.level {
     font-size: 3vw;
     margin-bottom: 1vw;
 }
 
-#highscore {
+.hs {
     font-size: 2vw;
     margin-bottom: 1vw;
 }
@@ -155,6 +156,52 @@ body {
     font-size: 1.5vw;
     margin-top: 1vw;
     animation: slide 0.3s ease-out forwards;
+}
+
+#background {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2;
+    display: none;
+}
+
+#death {
+    background-color: #363636;
+    border-radius: 2vw;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 55vw;
+    height: 44vh;
+    padding: 3.5vw;
+}
+
+#wrap {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.2vw solid white;
+    margin-bottom: 2vw;
+}
+
+#death .hs, #death .level {
+    margin-left: 5vw;
+    font-size: 1.8vw;
+}
+
+#death .pt {
+    font-size: 2.5vw;
+    border: none;
+}
+
+#death .play {
+    height: 3.7vw;
+    width: 12vw;
+    font-size: 1.2vw;
+    top: 2.5vw;
+    margin-right: 3.5vw;
 }
 
 @keyframes slide {
