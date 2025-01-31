@@ -10,24 +10,29 @@
         <link href="https://fonts.googleapis.com/css2?family=Jersey+15&display=swap" rel="stylesheet">
     </head>
     <body>
-        <div class="container" id="modal">
-            <div class="header">
-                <div class="title">Code Runner</div>
-                <button class="play" onclick="closeModal();">&#9658; <span class="bt">play</span></button>
+        <div id="overlay">
+            <div id="modal">
+                <div class="header">
+                    <div class="title">Code Runner</div>
+                    <button class="play" onclick="closeModal();">&#9658; <span class="bt">play</span></button>
+                </div>
+                <div class="para pt">How To Play:</div>
+                <div class="para">- Through the process of elimination, you have to crack the code from the hints provided on the left.</div>
+                <div class="para">- If you guess incorrectly, you will lose half a heart. This will continue till you lose all your hearts, signalling game over.</div>
+                <div class="para">- Each level is a randomised code, and the highscore is your highest level achieved.</div>
+                <div class="para pt">Controls:</div>
+                <div class="para">- Use left and right arrow keys to move between the digits.</div>
+                <div class="para">- Use backspace to delete the current focused digit.</div>
+                <div class="para">- Press enter to guess.</div>
+                <div class="para pt">Notes:</div>
+                <div class="para">- This game is best played on PC!</div>
+                <div class="para">- Pssttt, if you don't want to solve the code, there's a console log of the code that you can enter ;)</div>
+                <div class="para pt">Coming Soon:</div>
+                <div class="para">- Timer (toggle in settings).</div>
             </div>
-            <div class="para pt">How To Play:</div>
-            <div class="para">- Through the process of elimination, you have to crack the code from the hints provided on the left.</div>
-            <div class="para">- If you guess incorrectly, you will lose half a heart. This will continue till you lose all your hearts, signalling game over.</div>
-            <div class="para">- Each level is a randomised code, and the highscore is your highest level achieved.</div>
-            <div class="para pt">Controls:</div>
-            <div class="para">- Use left and right arrow keys to move between the digits.</div>
-            <div class="para">- Use backspace to delete the current focused digit.</div>
-            <div class="para">- Press enter to guess.</div>
-            <div class="para pt">Coming Soon:</div>
-            <div class="para">- Timer (toggle in settings).</div>
         </div>
 
-        <div class="container">
+        <div id="container">
             <div id="hints">
                 <div class="hint">
                     <input class="digit" placeholder="X" readonly>

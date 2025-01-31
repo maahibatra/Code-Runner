@@ -11,7 +11,7 @@ let ci, ci1, ci2, wi, wi1, wi2, cd, cd1, cd2, wd1, wd2, wd3, ocd, coin, remainin
 //correct index, wrong index, correct digit, wrong digit
 
 function closeModal() {
-    modal.style.display = 'none';
+    overlay.style.display = 'none';
     localStorage.setItem('ms', 'closed');
     note.innerText = "Press enter to guess!";
     note.style.animation = "none";
@@ -21,7 +21,7 @@ function closeModal() {
 
 const ms = localStorage.getItem("ms");
 if(ms === "closed") {
-    modal.style.display = "none";
+    overlay.style.display = "none";
 }
 
 //define code
@@ -181,7 +181,7 @@ function genNIC() {
 
 function flag() {
     cs = genCode();
-    console.log(cs);
+    console.log("CODE: " + cs);
     tcwp = genTCWP();
     occp = genOCCP();
     ocwp = genOCWP();
@@ -241,6 +241,12 @@ function flag() {
             }
         });
     });
+
+    document.addEventListener("click", function() {
+        if(![...cds].includes(event.target)) {
+            cds[0].focus();
+        }
+    })
 
     ln.forEach(element => {
         element.innerText = level;
