@@ -7,7 +7,20 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div id="container">
+        <div class="container" id="modal">
+            <div id="header">
+                <div id="title">Code Runner</div>
+                <button id="play" onclick="modal.style.display = 'none'; localStorage.setItem('ms', 'closed');">&#9658; play</button>
+            </div>
+            <div class="para pt">How To Play:</div>
+            <div class="para">- Through the process of elimination, you have to crack the code from the hints provided on the left.</div>
+            <div class="para">- If you guess incorrectly, you will lose half a heart. This will continue till you lose all your hearts, signalling game over.</div>
+            <div class="para">- Each level is a randomised code, and the highscore is your highest level achieved.</div>
+            <div class="para pt">Coming Soon:</div>
+            <div class="para">- Timer (toggle in settings).</div>
+        </div>
+
+        <div class="container">
             <div id="hints">
                 <div class="hint">
                     <input class="digit" placeholder="X" readonly>

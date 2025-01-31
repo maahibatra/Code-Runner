@@ -3,7 +3,7 @@ body {
     color: white;
 }
 
-#container {
+.container {
     background-color: #363636;
     border-radius: 2vw;
     position: absolute;
@@ -12,8 +12,48 @@ body {
     transform: translate(-50%, -50%);
     width: 88vw;
     height: 77vh;
-    padding: 2vw;
+    padding: 3.5vw;
     display: flex;
+}
+
+#modal {
+    z-index: 1;
+    flex-direction: column;
+}
+
+#header {
+    font-size: 3vw;
+    border-bottom: 0.3vw solid white;
+    height: 4vw;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#play {
+    border: 0.3vw solid white;
+    color: white;
+    border-radius: 0.7vw;
+    background-color: transparent;
+    width: 10vw;
+    font-size: 2vw;
+    margin-top: -0.5vw;
+    margin-bottom: 0.8vw;
+    cursor: pointer;
+}
+
+.para {
+    font-size: 1.7vw;
+    margin-top: 1vw;
+    margin-left: 5vw;
+    text-align: left;
+}
+
+.pt {
+    border-bottom: 0.2vw solid white;
+    font-size: 2vw;
+    margin-left: 3vw;
+    margin-top: 3vw;
 }
 
 #hints {
@@ -52,19 +92,14 @@ body {
 #right {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 55%;
     gap: 1vw;
     border-left: 0.3vw solid white;
 }
 
-#header {
-    font-size: 3vw;
-    border-bottom: 0.3vw solid white;
-    height: 4vw;
-    margin-left: auto;
-    display: flex;
-    justify-content: space-between;
+#right #header {
     width: 95%;
+    margin-left: auto;
 }
 
 #lock {
@@ -72,7 +107,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-top: 8vw;
+    margin-top: 5vw;
 }
 
 #code {
@@ -119,4 +154,16 @@ body {
 #note {
     font-size: 1.5vw;
     margin-top: 1vw;
+    animation: slide 0.3s ease-out forwards;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }

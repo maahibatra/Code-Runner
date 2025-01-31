@@ -1,10 +1,16 @@
 let code, tcwp = [], occp = [], ocwp = [], nic = [];
 let all = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+eds = false;
 let level = 0;
 let hs = localStorage.getItem("hs") ? parseInt(localStorage.getItem("hs")) : 0;
 let hearts = ["❤️", "❤️", "❤️"];
 let ci, ci1, ci2, wi, wi1, wi2, cd, cd1, cd2, wd1, wd2, wd3, ocd, coin, remaining, remaining2;
 //correct index, wrong index, correct digit, wrong digit
+
+const ms = localStorage.getItem("ms");
+if(ms === "closed") {
+    modal.style.display = "none";
+}
 
 //define code
 function genCode() {
@@ -233,27 +239,48 @@ function flag() {
         if(event.key === "Enter") {
             let cda = [];
             for(let i = 0; i < 3; i++) {
+                if(cds[i].value === "") {
+                    eds = true;
+                }
                 cda.push(cds[i].value);
             }
-            cda = cda.join("");
-            if(cda === cs) {
-                level++;
-                levelNumber.innerText = level;
-                if(level > hs) {
-                    hs = level;
-                    localStorage.setItem("hs", hs);
-                    highscoreNumber.innerText = hs;
-                }
-
-                cds.forEach(input => input.value = "");
-                flag();
+            
+            if(eds) {
+                note.innerText = "Please fill out all digits!";
+                note.style.animation = "none";
+                note.offsetHeight;
+                note.style.animation = "slide 0.3s ease-out forwards";
+                setTimeout(() => {
+                    note.innerText = "Press enter to guess!";
+                    note.style.animation = "none";
+                    note.offsetHeight;
+                    note.style.animation = "slide 0.3s ease-out forwards";
+                }, 2500);
+                eds = false;
             } else {
-                heartbreak();
+                cda = cda.join("");
+                if(cda === cs) {
+                    levelUp();
+                    flag();
+                } else {
+                    heartbreak();
+                }
             }
         }
     });
 
     cds[0].focus();
+    cds.forEach(input => input.value = "");
+}
+
+function levelUp() {
+    level++;
+    levelNumber.innerText = level;
+    if(level > hs) {
+        hs = level;
+        localStorage.setItem("hs", hs);
+        highscoreNumber.innerText = hs;
+    }
 }
 
 function heartbreak() {
