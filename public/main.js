@@ -10,6 +10,15 @@ let hearts = ["❤️", "❤️", "❤️"];
 let ci, ci1, ci2, wi, wi1, wi2, cd, cd1, cd2, wd1, wd2, wd3, ocd, coin, remaining, remaining2;
 //correct index, wrong index, correct digit, wrong digit
 
+function closeModal() {
+    modal.style.display = 'none';
+    localStorage.setItem('ms', 'closed');
+    note.innerText = "Press enter to guess!";
+    note.style.animation = "none";
+    note.offsetHeight;
+    note.style.animation = "slide 0.3s ease-out forwards";
+}
+
 const ms = localStorage.getItem("ms");
 if(ms === "closed") {
     modal.style.display = "none";
@@ -295,17 +304,33 @@ function levelUp() {
     }
 }
 
-let heartbreakCalls = 0;
-
 function heartbreak() {
-    heartbreakCalls++;
-    console.log(`heartbreak() called ${heartbreakCalls} times`);
     for(let i = 0; i < hearts.length; i++) {
         if(hearts[i] === "❤️") {
             hearts[i] = "💔";
+            note.innerText = "Wrong! Try again.";
+            note.style.animation = "none";
+            note.offsetHeight;
+            note.style.animation = "slide 0.3s ease-out forwards";
+            setTimeout(() => {
+                note.innerText = "Press enter to guess!";
+                note.style.animation = "none";
+                note.offsetHeight;
+                note.style.animation = "slide 0.3s ease-out forwards";
+            }, 1500);
             break;
         } else if(hearts[i] === "💔") {
             hearts[i] = "🖤";
+            note.innerText = "Wrong! Try again.";
+            note.style.animation = "none";
+            note.offsetHeight;
+            note.style.animation = "slide 0.3s ease-out forwards";
+            setTimeout(() => {
+                note.innerText = "Press enter to guess!";
+                note.style.animation = "none";
+                note.offsetHeight;
+                note.style.animation = "slide 0.3s ease-out forwards";
+            }, 1500);
             break;
         }
     }
@@ -322,8 +347,6 @@ function heal() {
 
     hearts = ["❤️", "❤️", "❤️"];
     health.innerHTML = hearts.join(" ");
-
-    heartbreakCalls = 0;
 
     level = 0;
 
