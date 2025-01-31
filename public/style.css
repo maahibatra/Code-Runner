@@ -1,10 +1,11 @@
 body {
-    background-color: black;
-    color: white;
+    background-color: #1e1e2f;
+    color: #e7e7e7;
+    font-family: "Jersey 15", serif;
 }
 
 .container {
-    background-color: #363636;
+    background-color: #33334d;
     border-radius: 2vw;
     position: absolute;
     left: 50%;
@@ -19,11 +20,12 @@ body {
 #modal {
     z-index: 1;
     flex-direction: column;
+    overflow: scroll;
 }
 
 .header {
-    font-size: 3vw;
-    border-bottom: 0.3vw solid white;
+    font-size: 4vw;
+    border-bottom: 0.3vw solid #66ff99;
     height: 4vw;
     display: flex;
     justify-content: space-between;
@@ -31,16 +33,19 @@ body {
 }
 
 .play {
-    border: 0.3vw solid white;
-    color: white;
+    border: 0.3vw solid #66ff99;
+    color: #66ff99;
     border-radius: 0.7vw;
     background-color: transparent;
     width: 10vw;
-    font-size: 2vw;
-    margin-top: -0.5vw;
+    font-size: 2.2vw;
     position: relative;
     bottom: 0.5vw;
     cursor: pointer;
+}
+
+.bt {
+    font-family: "Jersey 15", serif;
 }
 
 .para {
@@ -51,7 +56,7 @@ body {
 }
 
 .pt {
-    border-bottom: 0.2vw solid white;
+    border-bottom: 0.2vw solid #66ff99;
     font-size: 2vw;
     margin-left: 3vw;
     margin-top: 3vw;
@@ -74,16 +79,12 @@ body {
 
 .hint .digit {
     width: 3vw;
-    font-size: 5vw;
+    font-size: 5.7vw;
     cursor: default;
 }
 
-.hint .digit::placeholder {
-    font-size: 5vw;
-}
-
 .text {
-    font-size: 1.5vw;
+    font-size: 2vw;
     margin: 0 1vw;
     display: flex;
     justify-content: center;
@@ -95,12 +96,17 @@ body {
     flex-direction: column;
     width: 55%;
     gap: 1vw;
-    border-left: 0.3vw solid white;
+    border-left: 0.3vw solid #66ff99;
 }
 
 #right .header {
     width: 95%;
     margin-left: auto;
+}
+
+#health {
+    position: relative;
+    bottom: 0.2vw;
 }
 
 #lock {
@@ -121,7 +127,7 @@ body {
 }
 
 .digit {
-    border: 0.3vw solid white;
+    border: 0.3vw solid #3fb666;
     padding: 1vw 2vw;
     display: flex;
     align-items: center;
@@ -129,17 +135,20 @@ body {
     width: 4vw;
     font-size: 7vw;
     background-color: transparent;
-    color: white;
+    color: #66ff99;
     outline: none;
     caret-color: transparent;
+    font-family: "Jersey 15", serif;
+    text-align: center;
 }
 
 .digit::placeholder {
     font-size: 7vw;
+    color: #67da8d;
 }
 
 #code .digit:focus {
-    background-color: blue;
+    background-color: #5c5389;
 }
 
 .level {
@@ -162,13 +171,13 @@ body {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(30, 30, 47, 0.7);
     z-index: 2;
     display: none;
 }
 
 #death {
-    background-color: #363636;
+    background-color: #33334d;
     border-radius: 2vw;
     position: absolute;
     left: 50%;
@@ -182,24 +191,24 @@ body {
 #wrap {
     display: flex;
     justify-content: space-between;
-    border-bottom: 0.2vw solid white;
+    border-bottom: 0.2vw solid #66ff99;
     margin-bottom: 2vw;
 }
 
 #death .hs, #death .level {
     margin-left: 5vw;
-    font-size: 1.8vw;
+    font-size: 2.2vw;
 }
 
 #death .pt {
-    font-size: 2.5vw;
+    font-size: 3.5vw;
     border: none;
 }
 
 #death .play {
     height: 3.7vw;
     width: 12vw;
-    font-size: 1.2vw;
+    font-size: 1.8vw;
     top: 2.5vw;
     margin-right: 3.5vw;
 }
