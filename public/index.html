@@ -8,9 +8,9 @@
     </head>
     <body>
         <div class="container" id="modal">
-            <div id="header">
-                <div id="title">Code Runner</div>
-                <button id="play" onclick="modal.style.display = 'none'; localStorage.setItem('ms', 'closed');">&#9658; play</button>
+            <div class="header">
+                <div class="title">Code Runner</div>
+                <button class="play" onclick="modal.style.display = 'none'; localStorage.setItem('ms', 'closed');">&#9658; play</button>
             </div>
             <div class="para pt">How To Play:</div>
             <div class="para">- Through the process of elimination, you have to crack the code from the hints provided on the left.</div>
@@ -49,8 +49,8 @@
             </div>
 
             <div id="right">
-                <div id="header">
-                    <div id="title">Code Runner</div>
+                <div class="header">
+                    <div class="title">Code Runner</div>
                     <div id="health">
                         ❤️
                         ❤️
@@ -59,8 +59,8 @@
                 </div>
     
                 <div id="lock">
-                    <div id="level">Level: <span id="levelNumber">X</span></div>
-                    <div id="highscore">HighScore: <span id="highscoreNumber">X</span></div>
+                    <div class="level">Level: <span class="ln">X</span></div>
+                    <div class="hs">HighScore: <span class="hsn">X</span></div>
                     <div id="code">
                         <input class="digit" placeholder="X">
                         <input class="digit" placeholder="X">
@@ -68,6 +68,17 @@
                     </div>
                     <div id="note">Press enter to guess!</div>
                 </div>
+            </div>
+        </div>
+
+        <div id="background">
+            <div id="death">
+                <div id="wrap">
+                    <div class="para pt">Oof, you lost!</div>
+                    <button class="play" onclick="heal();">&#9658; play again</button>
+                </div>
+                <div class="hs">HighScore: <span class="hsn">X</span></div>
+                <div class="level">Level: <span class="ln">X</span></div>
             </div>
         </div>
 

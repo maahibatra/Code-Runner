@@ -1,6 +1,9 @@
 let code, tcwp = [], occp = [], ocwp = [], nic = [];
 let all = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 eds = false;
+let cds = document.querySelectorAll("#code .digit");
+let ln = document.querySelectorAll(".ln");
+let hsn = document.querySelectorAll(".hsn");
 let level = 0;
 let hs = localStorage.getItem("hs") ? parseInt(localStorage.getItem("hs")) : 0;
 let hearts = ["❤️", "❤️", "❤️"];
@@ -194,8 +197,6 @@ function flag() {
         hh[i].querySelector(".text").textContent = hd[i].text;
     }
 
-    let cds = document.querySelectorAll("#code .digit");
-
     cds.forEach((input, i) => {
         input.addEventListener("focus", function() {
             input.setSelectionRange(1, 1);
@@ -229,61 +230,76 @@ function flag() {
                 const pd = cds[i - 1];
                 pd.focus();
             }
-        })
+        });
     });
 
-    levelNumber.innerText = level;
-    highscoreNumber.innerText = hs;
-
-    document.addEventListener("keydown", function() {
-        if(event.key === "Enter") {
-            let cda = [];
-            for(let i = 0; i < 3; i++) {
-                if(cds[i].value === "") {
-                    eds = true;
-                }
-                cda.push(cds[i].value);
-            }
-            
-            if(eds) {
-                note.innerText = "Please fill out all digits!";
-                note.style.animation = "none";
-                note.offsetHeight;
-                note.style.animation = "slide 0.3s ease-out forwards";
-                setTimeout(() => {
-                    note.innerText = "Press enter to guess!";
-                    note.style.animation = "none";
-                    note.offsetHeight;
-                    note.style.animation = "slide 0.3s ease-out forwards";
-                }, 2500);
-                eds = false;
-            } else {
-                cda = cda.join("");
-                if(cda === cs) {
-                    levelUp();
-                    flag();
-                } else {
-                    heartbreak();
-                }
-            }
-        }
+    ln.forEach(element => {
+        element.innerText = level;
     });
+    hsn.forEach(element => {
+        element.innerText = hs;
+    });
+
+    document.removeEventListener("keydown", guess);
+    document.addEventListener("keydown", guess)
 
     cds[0].focus();
     cds.forEach(input => input.value = "");
 }
 
-function levelUp() {
-    level++;
-    levelNumber.innerText = level;
-    if(level > hs) {
-        hs = level;
-        localStorage.setItem("hs", hs);
-        highscoreNumber.innerText = hs;
+function guess() {
+    if(event.key === "Enter") {
+        let cda = [];
+        for(let i = 0; i < 3; i++) {
+            if(cds[i].value === "") {
+                eds = true;
+            }
+            cda.push(cds[i].value);
+        }
+        
+        if(eds) {
+            note.innerText = "Please fill out all digits!";
+            note.style.animation = "none";
+            note.offsetHeight;
+            note.style.animation = "slide 0.3s ease-out forwards";
+            setTimeout(() => {
+                note.innerText = "Press enter to guess!";
+                note.style.animation = "none";
+                note.offsetHeight;
+                note.style.animation = "slide 0.3s ease-out forwards";
+            }, 2500);
+            eds = false;
+        } else {
+            cda = cda.join("");
+            if(cda === cs) {
+                levelUp();
+                flag();
+            } else {
+                heartbreak();
+            }
+        }
     }
 }
 
+function levelUp() {
+    level++;
+    ln.forEach(element => {
+        element.innerText = level;
+    });
+    if(level > hs) {
+        hs = level;
+        localStorage.setItem("hs", hs);
+        hsn.forEach(element => {
+            element.innerText = hs;
+        });
+    }
+}
+
+let heartbreakCalls = 0;
+
 function heartbreak() {
+    heartbreakCalls++;
+    console.log(`heartbreak() called ${heartbreakCalls} times`);
     for(let i = 0; i < hearts.length; i++) {
         if(hearts[i] === "❤️") {
             hearts[i] = "💔";
@@ -297,8 +313,21 @@ function heartbreak() {
     health.innerHTML = hearts.join(" ");
 
     if(hearts.every(heart => heart === "🖤")) {
-        console.log("Game over!");
+        background.style.display = "block";
     }
+}
+
+function heal() {
+    background.style.display = "none";
+
+    hearts = ["❤️", "❤️", "❤️"];
+    health.innerHTML = hearts.join(" ");
+
+    heartbreakCalls = 0;
+
+    level = 0;
+
+    flag();
 }
 
 flag();
