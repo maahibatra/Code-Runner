@@ -107,6 +107,6 @@ body {
     font-size: 7vw;
 }
 
-.digit:focus {
+#code .digit:focus {
     background-color: blue;
 }
