@@ -1,5 +1,8 @@
 let code, tcwp = [], occp = [], ocwp = [], nic = [];
-all = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+let all = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+let level = 0;
+let hs = localStorage.getItem("hs") ? parseInt(localStorage.getItem("hs")) : 0;
+let hearts = ["❤️", "❤️", "❤️"];
 let ci, ci1, ci2, wi, wi1, wi2, cd, cd1, cd2, wd1, wd2, wd3, ocd, coin, remaining, remaining2;
 //correct index, wrong index, correct digit, wrong digit
 
@@ -223,6 +226,9 @@ function flag() {
         })
     });
 
+    levelNumber.innerText = level;
+    highscoreNumber.innerText = hs;
+
     document.addEventListener("keydown", function() {
         if(event.key === "Enter") {
             let cda = [];
@@ -231,13 +237,41 @@ function flag() {
             }
             cda = cda.join("");
             if(cda === cs) {
-                console.log("meow");
+                level++;
+                levelNumber.innerText = level;
+                if(level > hs) {
+                    hs = level;
+                    localStorage.setItem("hs", hs);
+                    highscoreNumber.innerText = hs;
+                }
+
+                cds.forEach(input => input.value = "");
                 flag();
             } else {
-                console.log("rawr");
+                heartbreak();
             }
         }
     });
+
+    cds[0].focus();
+}
+
+function heartbreak() {
+    for(let i = 0; i < hearts.length; i++) {
+        if(hearts[i] === "❤️") {
+            hearts[i] = "💔";
+            break;
+        } else if(hearts[i] === "💔") {
+            hearts[i] = "🖤";
+            break;
+        }
+    }
+
+    health.innerHTML = hearts.join(" ");
+
+    if(hearts.every(heart => heart === "🖤")) {
+        console.log("Game over!");
+    }
 }
 
 flag();
