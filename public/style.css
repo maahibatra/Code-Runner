@@ -49,8 +49,8 @@ body {
     position: sticky;
 }
 
-.play, #htp {
-    border: 0.3vw solid #66ff99;
+.play, .btn {
+    border: 0.3vw solid #3fb666;
     color: #66ff99;
     border-radius: 0.7vw;
     background-color: transparent;
@@ -127,6 +127,7 @@ body {
 #health {
     position: relative;
     bottom: 0.2vw;
+    font-size: 3.5vw;
 }
 
 #lock {
@@ -169,6 +170,17 @@ body {
 
 #code .digit:focus {
     background-color: #5c5389;
+    transition: 0.1s;
+}
+
+#code .digit:focus:hover {
+    background-color: #665d95;
+    transition: 0.1s;
+}
+
+.digit:hover {
+    background-color: #42426a;
+    transition: 0.1s;
 }
 
 .level {
@@ -187,11 +199,20 @@ body {
     animation: slide 0.3s ease-out forwards;
 }
 
-#htp {
+.btn {
     width: 10vw;
     font-size: 1.5vw;
     margin-top: 1.5vw;
     font-family: "Jersey 15", serif;
+}
+
+.btn:hover {
+    background-color: #38385a;
+    transition: 0.1s;
+}
+
+#ko-fi {
+    top: -1.2vw;
 }
 
 #background {
@@ -251,7 +272,7 @@ body {
     }
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1050px) {
     #container {
         flex-direction: column;
         height: auto;
@@ -328,10 +349,3 @@ body {
         overflow: scroll;
     }
 }
-
-/* 
-@media only screen and (max-width: 1800px) and (min-width: 1402px) {
-    #health {
-        bottom: 0.2vw;
-    }
-} */
