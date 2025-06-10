@@ -29,5 +29,5 @@ To demo, you can [Click here!!](https://code-runner-pied.vercel.app/)
 
 ## Usage of AI - AI has been used in the creation of this project, specifically ChatGPT.
 
-- AI has been used in helping me with errors I came across in the hint generation algorithm.
-- AI has been useed in the written text for the guide.
+- I had to make a whole algorithm to give hints for the code that actually work. This was tough, and needed AI to understand what the flow should be (it didn't write the code).
+- AI has been useed in the written text for the guide. I was braindead at 2 A.M. after finishing the project, and needed a quick guide. Edited and reviewed multiple times, though.
