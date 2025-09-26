@@ -4,7 +4,7 @@ A little game based on those interaction-bait tiktoks/reels where you have to so
 
 ## Demo
 
-To demo, you can [Click here!!](https://code-runner-pied.vercel.app/)
+To demo, you can [Click here!!](https://code-runner-game.vercel.app/)
 
 ## How To Play
 
