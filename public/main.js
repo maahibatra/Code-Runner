@@ -12,8 +12,9 @@ let ci, ci1, ci2, wi, wi1, wi2, cd, cd1, cd2, wd1, wd2, wd3, ocd, coin, remainin
 
 function closeModal() {
     overlay.style.display = 'none';
+    sfx("sfx-play");
     localStorage.setItem('ms', 'closed');
-    note.innerText = "Press enter to guess!";
+    note.innerText = "press enter to guess!";
     note.style.animation = "none";
     note.offsetHeight;
     note.style.animation = "slide 0.3s ease-out forwards";
@@ -189,10 +190,10 @@ function flag() {
 
     let hh = document.querySelectorAll("#hints .hint");
     let hd = [ //hint data
-        {array: tcwp, text: "Two numbers are correct but wrongly placed."},
-        {array: occp, text: "One number is correct and correctly placed."},
-        {array: ocwp, text: "One number is correct but wrongly placed."},
-        {array: nic, text: "Nothing is correct."},
+        {array: tcwp, text: "two numbers are correct but wrongly placed."},
+        {array: occp, text: "one number is correct and correctly placed."},
+        {array: ocwp, text: "one number is correct but wrongly placed."},
+        {array: nic, text: "nothing is correct."},
     ];
     
     hd.sort(() => Math.random() - 0.5);
@@ -212,6 +213,7 @@ function flag() {
         });
 
         input.addEventListener("click", function() {
+            sfx("sfx-select");
             input.setSelectionRange(1, 1);
         });
 
@@ -220,6 +222,7 @@ function flag() {
                 event.target.value = event.target.value.replace(/\D/g, '');
             } else {
                 event.target.value = event.target.value.charAt(event.target.value.length - 1);
+                sfx("sfx-type");
                 if(i < cds.length - 1) {
                     const nd = cds[i + 1];
                     nd.focus();
@@ -230,13 +233,16 @@ function flag() {
         input.addEventListener("keydown", function() {
             if(event.key === "ArrowRight" && (i < cds.length - 1)) {
                     const nd = cds[i + 1];
+                    sfx("sfx-select");
                     nd.focus();
             } else if(event.key === "ArrowLeft" && i > 0) {
                     event.preventDefault();
                     const pd = cds[i - 1];
+                    sfx("sfx-select");
                     pd.focus();
             } else if(event.key === "Backspace" && input.value === ""&& i > 0) {
                 const pd = cds[i - 1];
+                sfx("sfx-select");
                 pd.focus();
             }
         });
@@ -273,12 +279,12 @@ function guess() {
         }
         
         if(eds) {
-            note.innerText = "Please fill out all digits!";
+            note.innerText = "please fill out all digits!";
             note.style.animation = "none";
             note.offsetHeight;
             note.style.animation = "slide 0.3s ease-out forwards";
             setTimeout(() => {
-                note.innerText = "Press enter to guess!";
+                note.innerText = "press enter to guess!";
                 note.style.animation = "none";
                 note.offsetHeight;
                 note.style.animation = "slide 0.3s ease-out forwards";
@@ -298,6 +304,7 @@ function guess() {
 
 function levelUp() {
     level++;
+    sfx("sfx-win");
     ln.forEach(element => {
         element.innerText = level;
     });
@@ -314,12 +321,13 @@ function heartbreak() {
     for(let i = 0; i < hearts.length; i++) {
         if(hearts[i] === "❤️") {
             hearts[i] = "💔";
-            note.innerText = "Wrong! Try again.";
+            sfx("sfx-wrong");
+            note.innerText = "wrong! try again.";
             note.style.animation = "none";
             note.offsetHeight;
             note.style.animation = "slide 0.3s ease-out forwards";
             setTimeout(() => {
-                note.innerText = "Press enter to guess!";
+                note.innerText = "press enter to guess!";
                 note.style.animation = "none";
                 note.offsetHeight;
                 note.style.animation = "slide 0.3s ease-out forwards";
@@ -327,12 +335,13 @@ function heartbreak() {
             break;
         } else if(hearts[i] === "💔") {
             hearts[i] = "🖤";
-            note.innerText = "Wrong! Try again.";
+            sfx("sfx-wrong");
+            note.innerText = "wrong! try again.";
             note.style.animation = "none";
             note.offsetHeight;
             note.style.animation = "slide 0.3s ease-out forwards";
             setTimeout(() => {
-                note.innerText = "Press enter to guess!";
+                note.innerText = "press enter to guess!";
                 note.style.animation = "none";
                 note.offsetHeight;
                 note.style.animation = "slide 0.3s ease-out forwards";
@@ -350,6 +359,7 @@ function heartbreak() {
 
 function heal() {
     background.style.display = "none";
+    sfx("sfx-button");
 
     hearts = ["❤️", "❤️", "❤️"];
     health.innerHTML = hearts.join(" ");
@@ -357,6 +367,26 @@ function heal() {
     level = 0;
 
     flag();
+}
+
+function sfx(id) {
+    const audio = document.getElementById(id);
+    if(audio) {
+        if(id === "sfx-select") {
+            audio.volume = 0.1;
+        } else if(id === "sfx-win") {
+            audio.volume = 0.2;
+        } else if(id === "sfx-wrong") {
+            audio.volume = 0.5;
+        } else if(id === "sfx-play") {
+            audio.volume = 0.3;
+        } else if(id === "sfx-button") {
+            audio.volume = 0.4;
+        }
+
+        audio.currentTime = 0;
+        audio.play();
+    }
 }
 
 flag();
