@@ -13,23 +13,23 @@
         <div id="overlay">
             <div id="modal">
                 <div class="header">
-                    <div class="title">Code Runner</div>
+                    <div class="title">code runner</div>
                     <button class="play" onclick="closeModal();">&#9658; <span class="bt">play</span></button>
                 </div>
-                <div class="para pt">How To Play:</div>
-                <div class="para">- Through the process of elimination, you have to crack the code from the hints provided on the left.</div>
-                <div class="para">- If you guess incorrectly, you will lose half a heart. This will continue till you lose all your hearts, signalling game over.</div>
-                <div class="para">- Each level is a randomised code, and the highscore is your highest level achieved.</div>
-                <div class="para pt">Controls:</div>
-                <div class="para">- Use left and right arrow keys to move between the digits.</div>
-                <div class="para">- Use backspace to delete the current focused digit.</div>
-                <div class="para">- Press enter to guess.</div>
-                <div class="para pt">Notes:</div>
-                <div class="para">- This game is best played on PC!</div>
-                <div class="para">- Pssttt, if you don't want to solve the code, there's a console log of the code that you can enter ;)</div>
-                <div class="para">- Also, the hints are generated from the code through an algorithm which allows you to crack the code, but the algorithm isn't perfect; expect an unsolvable code every once in a while (and DM me on slack if you can :)).</div>
-                <div class="para pt">Coming Soon:</div>
-                <div class="para">- Timer (toggle in settings).</div>
+                <div class="para pt">how to play:</div>
+                <div class="para">- through the process of elimination, you have to crack the code from the hints provided on the left.</div>
+                <div class="para">- if you guess incorrectly, you will lose half a heart. this will continue till you lose all your hearts, signalling game over.</div>
+                <div class="para">- each level is a randomised code, and the highscore is your highest level achieved.</div>
+                <div class="para pt">controls:</div>
+                <div class="para">- use left and right arrow keys to move between the digits.</div>
+                <div class="para">- use backspace to delete the current focused digit.</div>
+                <div class="para">- press enter to guess.</div>
+                <div class="para pt">notes:</div>
+                <div class="para">- this game is best played on pc!</div>
+                <div class="para">- pssttt, if you don't want to solve the code, there's a console log of the code that you can enter ;)</div>
+                <div class="para">- also, the hints are generated from the code through an algorithm which allows you to crack the code, but the algorithm isn't perfect; expect an unsolvable code every once in a while (and dm me on slack if you can :)).</div>
+                <div class="para pt">coming soon:</div>
+                <div class="para">- timer (toggle in settings).</div>
             </div>
         </div>
 
@@ -63,7 +63,7 @@
 
             <div id="right">
                 <div class="header">
-                    <div class="title">Code Runner</div>
+                    <div class="title">code runner</div>
                     <div id="health">
                         ❤️
                         ❤️
@@ -72,15 +72,15 @@
                 </div>
     
                 <div id="lock">
-                    <div class="level">Level: <span class="ln">X</span></div>
-                    <div class="hs">HighScore: <span class="hsn">X</span></div>
+                    <div class="level">level: <span class="ln">X</span></div>
+                    <div class="hs">highscore: <span class="hsn">X</span></div>
                     <div id="code">
                         <input class="digit" placeholder="X">
                         <input class="digit" placeholder="X">
                         <input class="digit" placeholder="X">
                     </div>
-                    <div id="note">Press enter to guess!</div>
-                    <button class="btn" id="htp" onclick="overlay.style.display = 'block';">how to play</button>
+                    <div id="note">press enter to guess!</div>
+                    <button class="btn" id="htp" onclick="overlay.style.display = 'block'; sfx('sfx-button');">how to play</button>
                 </div>
             </div>
         </div>
@@ -88,13 +88,20 @@
         <div id="background">
             <div id="death">
                 <div id="wrap">
-                    <div class="para pt">Oof, you lost!</div>
+                    <div class="para pt">oof, you lost!</div>
                     <button class="play" onclick="heal();">&#9658;  <span class="bt">play again</span></button>
                 </div>
-                <div class="hs">HighScore: <span class="hsn">X</span></div>
-                <div class="level">Level: <span class="ln">X</span></div>
+                <div class="hs">highscore: <span class="hsn">X</span></div>
+                <div class="level">level: <span class="ln">X</span></div>
             </div>
         </div>
+
+        <audio id="sfx-play" src="assets/play.mp3"></audio>
+        <audio id="sfx-type" src="assets/type.mp3"></audio>
+        <audio id="sfx-select" src="assets/select.mp3"></audio>
+        <audio id="sfx-win" src="assets/win.mp3"></audio>
+        <audio id="sfx-wrong" src="assets/wrong.mp3"></audio>  
+        <audio id="sfx-button" src="assets/button.mp3"></audio>
 
         <script src="main.js"></script>
     </body>
